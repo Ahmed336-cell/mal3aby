@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mal3aby/core/utils/app_router.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../core/common/custom_button.dart';
 import '../../../../../../core/common/custom_text_feild.dart';
+import 'custom_drop_down_list.dart';
 
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -21,26 +24,16 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
   String name='';
   String phoneNumber='';
   String confirmPassword='';
+  String dropdownValue = '';
+
 
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children:[
-        Container(
-          decoration: const BoxDecoration(
-            color: Colors.blue, // Example background color
-            image: DecorationImage(
-              image: AssetImage('assets/background.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-
-        ),
-
-        Container(
-          color: Colors.black.withOpacity(0.7),
-        ),
+        Constant.backgorundContainer,
+        Constant.colorBackgroundContainer,
 
        Center(
          child: SingleChildScrollView(
@@ -87,6 +80,14 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
                           },
 
 
+                        ),
+                        const SizedBox(height: 10,),
+
+                        DropDownButtonAuth(list: const ["Giza","Cairo" , "Alexandria"],
+                          onChanged: (value){
+                            dropdownValue=value;
+                          },
+                          icon: const Icon(Icons.location_on),
                         ),
                         const SizedBox(height: 10,),
                         CustomTextFeild(
@@ -137,7 +138,7 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
                         const SizedBox(height: 16,),
 
                         CustomButton(status:"Sign Up" , onPressed: (){
-
+                          GoRouter.of(context).pushReplacement(AppRouter.KUserHome);
                         }),
                       ],
                     ),

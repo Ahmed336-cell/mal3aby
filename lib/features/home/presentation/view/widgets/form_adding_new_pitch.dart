@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mal3aby/core/utils/app_router.dart';
 
-import '../../../../../../constants.dart';
-import '../../../../../../core/common/custom_button.dart';
-import '../../../../../../core/common/custom_text_feild.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/common/custom_button.dart';
+import '../../../../../core/common/custom_text_feild.dart';
+import '../../../../auth/signup/presentation/view/widgets/custom_drop_down_list.dart';
 
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-class FormInputSignupOwner extends StatefulWidget {
-  const FormInputSignupOwner({super.key});
+class FormAddingNewPitch extends StatefulWidget {
+  const FormAddingNewPitch({super.key});
 
   @override
-  State<FormInputSignupOwner> createState() => _FormInputSignupOwnerState();
+  State<FormAddingNewPitch> createState() => _FormAddingNewPitchState();
 }
 
-class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
+class _FormAddingNewPitchState extends State<FormAddingNewPitch> {
 
-  String email = '';
-  String password = '';
   String name='';
   String phoneNumber='';
   String confirmPassword='';
+  String dropdownValue = '';
 
 
   @override
@@ -48,14 +46,37 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(16.0),
-                              child: Text("SignUp" , style: TextStyle(color: Colors.white , fontSize: 24 , fontWeight: FontWeight.bold),),
+                              child: Text("Add Pitch" , style: TextStyle(color: Colors.white , fontSize: 24 , fontWeight: FontWeight.bold),),
                             ),
+                            const SizedBox(height: 10,),
                             CustomTextFeild(
-                              hint: "UserName",secure: false,icon: const Icon(Icons.person),
+                              hint: "Pitch Name",secure: false,icon: const Icon(Icons.golf_course_rounded),
                               type: TextInputType.name,
                               validator: (value){
                                 if(value==null||value.isEmpty){
-                                  return "user name is required";
+                                  return "pitch name is required";
+                                }else{
+                                  name=value;
+                                  return null;
+                                }
+                              },
+
+                            ),
+                            const SizedBox(height: 10,),
+
+                            DropDownButtonAuth(list: const ["Giza","Cairo" , "Alexandria"],
+                              onChanged: (value){
+                                dropdownValue=value;
+                              },
+                              icon: const Icon(Icons.location_on),
+                            ),
+                            const SizedBox(height: 10,),
+                            CustomTextFeild(
+                              hint: "address",secure: false,icon: const Icon(Icons.location_city),
+                              type: TextInputType.name,
+                              validator: (value){
+                                if(value==null||value.isEmpty){
+                                  return "address is required";
                                 }else{
                                   name=value;
                                   return null;
@@ -65,11 +86,11 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
                             ),
                             const SizedBox(height: 10,),
                             CustomTextFeild(
-                              hint: "Phone Number",
-                              secure: false,icon: const Icon(Icons.phone), type: TextInputType.phone,
+                              hint: "link of google map location",
+                              secure: false,icon: const Icon(Icons.map_outlined), type: TextInputType.phone,
                               validator: (value){
                                 if(value==null||value.isEmpty){
-                                  return "phone number is required";
+                                  return "link is required";
                                 }else{
                                   phoneNumber=value;
                                   return null;
@@ -79,45 +100,19 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
 
                             ),
                             const SizedBox(height: 10,),
-                            CustomTextFeild(
-                              hint: "Email",secure: false,icon: const Icon(Icons.email),
-                              type: TextInputType.emailAddress,
-                              validator: (value){
-                                if(value==null||value.isEmpty){
-                                  return "Email is required";
-                                }else if(!Constant.isValidEmail(value)){
-                                  return "Invalid Email";
-                                }
-
-                                else{
-                                  email=value;
-                                  return null;
-                                }
+                            DropDownButtonAuth(list: const ["Football","Paddle" , "Tennis" , "Ping Pong" , "Squash" ],
+                              onChanged: (value){
+                                dropdownValue=value;
                               },
-                            ),
-                            const SizedBox(height: 10,),
-                            CustomTextFeild(hint: "Password",secure: true,icon: const Icon(Icons.password),
-                              type: TextInputType.text,
-                              validator: (value){
-                                if(value==null||value.isEmpty){
-                                  return "password is required";
-                                }else if(value.length<6){
-                                  return "Password must be more than 6 characters";
-                                }
-
-                                else{
-                                  password=value;
-                                  return null;
-                                }
-                              },
+                              icon: const Icon(Icons.sports_baseball_rounded),
                             ),
                             const SizedBox(height: 10,),
                             CustomTextFeild(
-                              hint: "Password Confirm",secure: true,icon: const Icon(Icons.password),
+                              hint: "Price",secure: false,icon: const Icon(Icons.attach_money_rounded),
                               type: TextInputType.text,
                               validator: (value){
                                 if(value==null||value.isEmpty){
-                                  return "confirm password is required";
+                                  return "Price is required";
                                 }else{
                                   confirmPassword=value;
                                   return null;
@@ -126,8 +121,7 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
                             ),
                             const SizedBox(height: 16,),
 
-                            CustomButton(status:"Continue" , onPressed: (){
-                              GoRouter.of(context).pushReplacement(AppRouter.KOwnerHomePage);
+                            CustomButton(status:"Add" , onPressed: (){
 
                             }),
                           ],

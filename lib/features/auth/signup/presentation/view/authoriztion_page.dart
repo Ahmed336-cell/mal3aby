@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mal3aby/features/auth/signup/presentation/view/widgets/custom_drop_down_list.dart';
 
 import '../../../../../../core/utils/app_router.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/common/custom_button.dart';
 
 
@@ -16,20 +17,8 @@ class AuthorizationPage extends StatelessWidget {
 
       body:Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blue, // Example background color
-              image: DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-
-          ),
-
-          Container(
-            color: Colors.black.withOpacity(0.7),
-          ),
+          Constant.backgorundContainer,
+          Constant.colorBackgroundContainer,
 
          Center(
           child: Container(

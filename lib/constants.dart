@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'core/utils/assets.dart';
 class Constant{
 
   static  InputDecoration paymentDecoration=  InputDecoration(
@@ -27,6 +29,19 @@ class Constant{
     return emailRegex.hasMatch(email);
   }
 
+  static Widget backgorundContainer =  Container(
+    decoration: const BoxDecoration(
+      color: Colors.blue, // Example background color
+      image: DecorationImage(
+        image: AssetImage(AssetsData.background),
+        fit: BoxFit.cover,
+      ),
+    ),
 
+  );
+
+  static Widget colorBackgroundContainer= Container(
+    color: Colors.black.withOpacity(0.7),
+  );
 
 }

@@ -18,11 +18,15 @@ class _DropDownButtonAuthState extends State<DropDownButtonAuth> {
         decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide.none
+                borderSide: const BorderSide(
+                  color: Colors.white,
+                  width: 0.5
+                )
             ),
             fillColor: Colors.black,
             filled: true,
             prefixIcon:  widget.icon
+
 
         ),
 
