@@ -9,7 +9,8 @@ class Constant{
         borderSide: BorderSide.none,
 
       ),
-      fillColor: Colors.white,
+
+      fillColor: Colors.black,
       filled: true,
       hintStyle: const TextStyle(
         color: Colors.black,
@@ -19,6 +20,7 @@ class Constant{
           color: Colors.black,
           fontWeight: FontWeight.bold
       )
+
   );
   static bool isValidEmail(String email) {
     // Regular expression for validating an email address

@@ -53,7 +53,8 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
           ),
           fillColor: Colors.black,
           filled: true,
-          prefixIcon: widget.icon
+          prefixIcon: widget.icon,
+
       ),
       keyboardType: widget.type,
       obscureText: widget.secure,

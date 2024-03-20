@@ -5,8 +5,29 @@ class UserHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold(
-      body: UserHomeViewBody(),
-    ));
+    return  SafeArea(
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text("Welcome Mohamed", style: TextStyle(fontSize: 30,
+                fontWeight: FontWeight.bold,
+
+              ),),
+              automaticallyImplyLeading: false, // Remove the back button
+              backgroundColor: Colors.black,
+              bottom: const TabBar(
+                labelColor: Colors.white,
+                indicatorColor: Colors.green,
+                dividerColor: Colors.white,
+                tabs: [
+                  Tab(text: "Pitches Page", ),
+                  Tab(text: "Reservations page",)
+                ],
+              ),
+            ),
+                body: const UserHomeViewBody(),
+              ),
+        ));
   }
 }
