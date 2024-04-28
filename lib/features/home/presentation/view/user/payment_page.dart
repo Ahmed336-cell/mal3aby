@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:mal3aby/core/utils/firebase_fuctions.dart';
+import 'package:mal3aby/features/auth/data/profile.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/common/custom_button.dart';
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key, required this.profile, required this.pitch, required this.selectDate, required this.startTime, required this.endTime});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
+  final Profile profile;
+  final Pitch pitch;
+  final DateTime selectDate;
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
 }
 
 class _PaymentPageState extends State<PaymentPage> {
@@ -128,7 +136,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               title: "Confirm Payment",
                               desc: "Are you sure want to confirm payment",
                               btnOkOnPress: (){
-
+                              FirebaseFunctions.addReservationToFirestore(profile: widget.profile , pitch: widget.pitch, paymentStatues: "online", date: widget.selectDate, startTime: widget.startTime, endTime: widget.endTime);
                               },
                               btnCancelOnPress: (){},
                             ).show();

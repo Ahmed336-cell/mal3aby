@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mal3aby/core/utils/assets.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
 
 class CustomPitchImage extends StatelessWidget {
-  const CustomPitchImage({super.key});
-
+  const CustomPitchImage({super.key, required this.pitch});
+ final Pitch? pitch;
   @override
   Widget build(BuildContext context) {
 
@@ -11,12 +12,12 @@ class CustomPitchImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: AspectRatio(
           aspectRatio: 4 / 4,
-          child:Image.asset(AssetsData.background , fit: BoxFit.cover,)
-          // CachedNetworkImage(
-          //   fit: BoxFit.fill,
-          //   imageUrl: ,
-          //   errorWidget:(context,url,error)=> const Icon(Icons.error , color: Colors.red,),
-          // )
+          // child:Image.asset(AssetsData.background , fit: BoxFit.cover,)
+          child:CachedNetworkImage(
+            fit: BoxFit.fill,
+            imageUrl:pitch!.imageList!.first,
+            errorWidget:(context,url,error)=> const Icon(Icons.error , color: Colors.red,),
+          )
 
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../core/common/custom_button.dart';
 import '../../../../../../core/common/custom_text_feild.dart';
+import '../../../../manager/auth_cubit/auth_cubit.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -17,16 +19,16 @@ class _FormInputState extends State<FormInput> {
   String email = '';
   String password = '';
 
-  // void _login(BuildContext context) {
-  //   if (_formKey.currentState!.validate()) {
-  //     context.read<AuthenticationCubit>().signInWithEmailAndPassword(
-  //       email,
-  //       password,
-  //     );
-  //
-  //
-  //   }
-  // }
+  void _login(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      context.read<AuthenticationCubit>().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -73,6 +75,7 @@ class _FormInputState extends State<FormInput> {
           ),
           const SizedBox(height: 10),
           CustomButton(status: "Login", onPressed: () {
+            _login(context);
           }),
 
         ],

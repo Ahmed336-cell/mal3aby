@@ -5,13 +5,9 @@ import 'package:mal3aby/features/home/presentation/view/owner/adding_new_pitch.d
 import 'package:mal3aby/features/auth/signup/presentation/view/owner_singup_page.dart';
 import 'package:mal3aby/features/auth/signup/presentation/view/user_signup_page.dart';
 import 'package:mal3aby/features/home/presentation/view/owner/owner_home_page.dart';
-import 'package:mal3aby/features/home/presentation/view/owner/owner_pitch_details_page.dart';
-import 'package:mal3aby/features/home/presentation/view/user/booking_page.dart';
-import 'package:mal3aby/features/home/presentation/view/user/payment_page.dart';
 import 'package:mal3aby/features/home/presentation/view/user/user_home_page.dart';
 import 'package:mal3aby/features/splash/presentation/view/splash_page.dart';
 
-import '../../features/home/presentation/view/user/pitch_details_page_user.dart';
 
 abstract class AppRouter {
   static const KLoginPage = '/login';
@@ -21,12 +17,12 @@ abstract class AppRouter {
   static const KAddingPitchPage = '/addingPitch';
   static const KForgerPassword='/forgetPassword';
   static const KUserHome='/userHome';
-  static const KOwnerPitchDetailsPage='/ownerPitchDetails';
-  static const KUserPitchDetailsPage='/userPitchDetails';
+  //static const KOwnerPitchDetailsPage='/ownerPitchDetails';
+  //static const KUserPitchDetailsPage='/userPitchDetails';
   static const KPaymentPage='/paymentPage';
 
   static const KOwnerHomePage = "/OwnerHomePage";
-  static const KBookingPage = "/bookingPage";
+  // static const KBookingPage = "/bookingPage";
   static const KSplashPage = "/splashPage";
 
   static final router = GoRouter(routes: [
@@ -58,10 +54,10 @@ abstract class AppRouter {
       path: KAddingPitchPage,
       builder: (context, state) => const AddingNewPitchPage(),
     ),
-    GoRoute(
-      path: KOwnerPitchDetailsPage,
-      builder: (context, state) => const OwnerPitchDetailsPage(),
-    ),
+    // GoRoute(
+    //   path: KOwnerPitchDetailsPage,
+    //   builder: (context, state) =>  OwnerPitchDetailsPage(pitch: state.extra as Pitch,),
+    // ),
 
     GoRoute(
       path: KUserHome,
@@ -69,22 +65,22 @@ abstract class AppRouter {
     ),
 
 
-    GoRoute(
-      path: KUserPitchDetailsPage,
-      builder: (context, state) => const PitchDetailsPageUser(),
-    ),
+    // GoRoute(
+    //   path: KUserPitchDetailsPage,
+    //   builder: (context, state) => const PitchDetailsPageUser( pitch: state.extra, ),
+    // ),
 
-    GoRoute(
-      path: KBookingPage,
-      builder: (context, state) => const BookingPage(),
-    ),
+    // GoRoute(
+    //   path: KBookingPage,
+    //   builder: (context, state) => const BookingPage(),
+    // ),
 
-
-    GoRoute(
-      path: KPaymentPage,
-      builder: (context, state) => const PaymentPage(),
-    ),
-
+    //
+    // GoRoute(
+    //   path: KPaymentPage,
+    //   builder: (context, state) => const PaymentPage(),
+    // ),
+    //
 
 
 

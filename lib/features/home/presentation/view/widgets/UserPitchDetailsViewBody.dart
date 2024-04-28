@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mal3aby/features/auth/data/profile.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
+import 'package:mal3aby/features/home/presentation/view/user/booking_page.dart';
 import 'package:mal3aby/features/home/presentation/view/widgets/pitch_images_list_view.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/common/custom_button.dart';
-import '../../../../../core/utils/app_router.dart';
 class UserPitchDetailsViewBody extends StatelessWidget {
-  const UserPitchDetailsViewBody({super.key});
-
+  const UserPitchDetailsViewBody({super.key, required this.pitch, required this.profile});
+  final Pitch pitch;
+  final Profile profile;
   @override
   Widget build(BuildContext context) {
     return   Stack(
@@ -19,51 +21,51 @@ class UserPitchDetailsViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  const PitchImageListView(),
+                   Center(child: PitchImageListView(pitch: pitch,)),
                   const SizedBox(height: 16,),
-                  const Text("Barcelona",style: TextStyle(fontSize: 34 , fontWeight: FontWeight.bold),),
-                  const Row(
+                   Text(pitch.pitchName!,style: const TextStyle(fontSize: 34 , fontWeight: FontWeight.bold),),
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.location_on),
-                      SizedBox(width: 8,),
-                      Text("Giza", style: TextStyle(fontSize: 24),)
+                      const Icon(Icons.location_on),
+                      const SizedBox(width: 8,),
+                      Text(pitch.pitchGovernement!, style: const TextStyle(fontSize: 24),)
                     ],
                   ),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.location_city),
-                      SizedBox(width: 8,),
-                      Text("el hosary , 6 october", style: TextStyle(fontSize: 24),)
+                      const Icon(Icons.location_city),
+                      const SizedBox(width: 8,),
+                      Text(pitch.address!, style: const TextStyle(fontSize: 24),)
                     ],
                   ),
                   const SizedBox(height: 8,),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.phone),
-                      SizedBox(width: 8,),
-                      Text("0123456789", style: TextStyle(fontSize: 24),)
+                      const Icon(Icons.phone),
+                      const SizedBox(width: 8,),
+                      Text(pitch.phoneNumber!, style: const TextStyle(fontSize: 24),)
                     ],
                   ),
                   const SizedBox(height: 8,),
 
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.person),
-                      SizedBox(width: 8,),
-                      Text("Ahmed Maher", style: TextStyle(fontSize: 24),)
+                      const Icon(Icons.person),
+                      const SizedBox(width: 8,),
+                      Text(pitch.ownerName!, style: const TextStyle(fontSize: 24),)
                     ],
                   ),
                   const SizedBox(height: 8,),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.attach_money_outlined),
-                      SizedBox(width: 8,),
-                      Text("250 Egp per hour", style: TextStyle(fontSize: 24),)
+                      const Icon(Icons.attach_money_outlined),
+                      const SizedBox(width: 8,),
+                      Text("${pitch.price} Egp per hour", style: const TextStyle(fontSize: 24),)
                     ],
                   ),
 
@@ -73,7 +75,9 @@ class UserPitchDetailsViewBody extends StatelessWidget {
                     children: [
 
                       CustomButton(status:"Book" , onPressed: (){
-                        GoRouter.of(context).push(AppRouter.KBookingPage);
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return BookingPage(pitch: pitch, profile: profile);
+                        }));
                       }),
 
                       CustomButton(status:"Location" , onPressed: (){})

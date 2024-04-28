@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 class CustomTextFeild extends StatefulWidget {
-  const CustomTextFeild({super.key, required this.hint, required this.secure, required this.icon, required this.type, this.validator});
+  const CustomTextFeild({super.key, required this.hint, required this.secure, required this.icon, required this.type, this.validator, this.onChanged});
   final String hint;
   final bool secure;
   final Icon icon;
   final TextInputType type;
   final String? Function(String?)? validator;
-
+  final String?Function(String?)?onChanged;
 
   @override
   State<CustomTextFeild> createState() => _CustomTextFeildState();
@@ -59,6 +59,11 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
       keyboardType: widget.type,
       obscureText: widget.secure,
       validator: widget.validator,
+      onChanged:(value){
+        if(widget.type!=null){
+          widget.onChanged!(value);
+        }
+      },
     );
   }
 }

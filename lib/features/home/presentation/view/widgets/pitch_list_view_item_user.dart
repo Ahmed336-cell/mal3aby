@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mal3aby/core/utils/app_router.dart';
+import 'package:mal3aby/features/auth/data/profile.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
+import 'package:mal3aby/features/home/presentation/view/user/pitch_details_page_user.dart';
 
 import 'custom_pitch_image.dart';
 class PitchUserListViewItem extends StatelessWidget {
-  const PitchUserListViewItem({super.key});
-
+  const PitchUserListViewItem({super.key, required this.pitch, required this.profile});
+  final Pitch pitch;
+  final Profile profile;
   @override
   Widget build(BuildContext context) {
     return    GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.KUserPitchDetailsPage);
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return PitchDetailsPageUser(pitch: pitch,profile: profile,);
+        }));
       },
       child: Container(
         color: Colors.black,
@@ -19,7 +23,7 @@ class PitchUserListViewItem extends StatelessWidget {
           height: 125,
           child: Row(
             children: [
-              const CustomPitchImage(),
+                CustomPitchImage(pitch: pitch,),
               const SizedBox(
                 width: 30,
               ),
@@ -29,22 +33,22 @@ class PitchUserListViewItem extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * .5,
-                      child: const Text(
-                        "Barcelona Pitch",
+                      child:  Text(
+                        pitch.pitchName!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       ),
                     ),
                     const SizedBox(
                       height: 3,
                     ),
-                    const Row(
+                     Row(
                       children: [
-                        Icon(Icons.location_on),
-                        SizedBox(width: 8,),
+                        const Icon(Icons.location_on),
+                        const SizedBox(width: 8,),
                         Text(
-                          "Giza , Hawamdia",
+                          "${pitch.pitchGovernement} , ${pitch.address}",
                           maxLines: 1,
                         ),
                       ],
@@ -52,25 +56,25 @@ class PitchUserListViewItem extends StatelessWidget {
                     const SizedBox(
                       height: 3,
                     ),
-                    const Row(
+                     Row(
 
                       children: [
-                        Icon(Icons.attach_money_sharp),
-                        SizedBox(width: 8,),
+                        const Icon(Icons.attach_money_sharp),
+                        const SizedBox(width: 8,),
                         Text(
-                          "250 EGP",
+                         pitch.price!,
 
                         ),
 
                       ],
                     ),
-                    const Row(
+                     Row(
 
                       children: [
-                        Icon(Icons.person),
-                        SizedBox(width: 8,),
+                        const Icon(Icons.person),
+                        const SizedBox(width: 8,),
                         Text(
-                          "Mohamed Ahmed",
+                         pitch.ownerName! ,
 
                         ),
 

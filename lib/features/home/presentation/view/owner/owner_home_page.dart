@@ -13,7 +13,7 @@ class OwnerHomePage extends StatelessWidget {
           length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Welcome Ahmed", style: TextStyle(fontSize: 30,
+          title: const Text("Welcome Owner", style: TextStyle(fontSize: 30,
             fontWeight: FontWeight.bold,
 
           ),),

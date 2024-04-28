@@ -1,10 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mal3aby/core/utils/app_router.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mal3aby/core/utils/firebase_fuctions.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../core/common/custom_button.dart';
 import '../../../../../../core/common/custom_text_feild.dart';
+import '../../../../manager/auth_cubit/auth_cubit.dart';
 import 'custom_drop_down_list.dart';
 
 
@@ -26,6 +28,37 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
   String confirmPassword='';
   String dropdownValue = '';
 
+  void navigate(BuildContext context){
+    _signUp(context);
+  }
+  void _signUp(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      if (confirmPassword == password ) {
+        try {
+          // Create user in Firebase Authentication
+          User? user = await context.read<AuthenticationCubit>().signUpWithEmailAndPassword(email, password);
+
+          if (user != null) {
+            // Use the user's ID to store additional information in Firestore
+            final userId = user.uid;
+            FirebaseFunctions.addUserToFirestore(govern: dropdownValue,name: name,userId: userId,email: email,phoneNumber: phoneNumber, authType: 'user', );
+          }
+
+        } catch (e) {
+          print('Error during signup: $e');
+          // Handle signup errors here
+        }
+      } else {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          title: "Wrong password",
+          desc: "Password and Confirm password are different",
+          btnCancelOnPress: () {},
+        ).show();
+      }
+    }
+  }
 
 
   @override
@@ -138,7 +171,7 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
                         const SizedBox(height: 16,),
 
                         CustomButton(status:"Sign Up" , onPressed: (){
-                          GoRouter.of(context).pushReplacement(AppRouter.KUserHome);
+                          _signUp(context);
                         }),
                       ],
                     ),

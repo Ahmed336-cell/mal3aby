@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mal3aby/features/auth/data/profile.dart';
 import 'package:mal3aby/features/home/presentation/view/user/pitchs_user_page.dart';
 
 import '../owner/reservations_page.dart';
 class UserHomeViewBody extends StatelessWidget {
-  const UserHomeViewBody({super.key});
-
+  const UserHomeViewBody({super.key, required this.profile});
+  final Profile profile;
   @override
   Widget build(BuildContext context) {
-    return  const TabBarView(
+    return    TabBarView(
       children: [
-        PitchesUserPage(),
-        ReservationViewPage()
+        PitchesUserPage(profile: profile,),
+        const ReservationViewPage()
 
       ],
 

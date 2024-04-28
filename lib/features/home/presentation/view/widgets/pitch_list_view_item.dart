@@ -1,15 +1,19 @@
+
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mal3aby/core/utils/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
+import 'package:mal3aby/features/home/presentation/manager/data_fetch_cubit.dart';
+import 'package:mal3aby/features/home/presentation/view/owner/owner_pitch_details_page.dart';
 import 'package:mal3aby/features/home/presentation/view/widgets/custom_pitch_image.dart';
 class PitchListViewItem extends StatelessWidget {
-  const PitchListViewItem({super.key});
-
+  const PitchListViewItem({super.key, required this.pitch});
+  final Pitch? pitch;
   @override
   Widget build(BuildContext context) {
     return    GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.KOwnerPitchDetailsPage);
+        context.read<DataFetchingCubit>().fetchDataPitch(pitch!.OwnerId!,pitch!.pitchId!);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>OwnerPitchDetailsPage(pitch: pitch!)));
       },
       child: Container(
         color: Colors.black,
@@ -18,7 +22,7 @@ class PitchListViewItem extends StatelessWidget {
           height: 125,
           child: Row(
             children: [
-              const CustomPitchImage(),
+               CustomPitchImage(pitch: pitch,),
               const SizedBox(
                 width: 30,
               ),
@@ -28,22 +32,22 @@ class PitchListViewItem extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * .5,
-                      child: const Text(
-                       "Barcelona Pitch",
+                      child:  Text(
+                       pitch!.pitchName!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       ),
                     ),
                     const SizedBox(
                       height: 3,
                     ),
-                    const Row(
+                     Row(
                       children: [
-                        Icon(Icons.location_on),
-                        SizedBox(width: 8,),
+                        const Icon(Icons.location_on),
+                        const SizedBox(width: 8,),
                         Text(
-                         "Giza , Hawamdia",
+                         pitch!.pitchGovernement!,
                           maxLines: 1,
                         ),
                       ],
@@ -51,13 +55,13 @@ class PitchListViewItem extends StatelessWidget {
                     const SizedBox(
                       height: 3,
                     ),
-                    const Row(
+                     Row(
 
                       children: [
-                        Icon(Icons.attach_money_sharp),
-                        SizedBox(width: 8,),
+                        const Icon(Icons.attach_money_sharp),
+                        const SizedBox(width: 8,),
                         Text(
-                          "250 EGP",
+                          pitch!.price!,
 
                         ),
 

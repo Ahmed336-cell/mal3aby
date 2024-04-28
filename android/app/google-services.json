@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146620244654",
+    "project_id": "mal3aby-a706c",
+    "storage_bucket": "mal3aby-a706c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146620244654:android:12ab3a6aeb10078b3a433f",
+        "android_client_info": {
+          "package_name": "com.example.mal3aby"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMY-gKLz5uRxEoPDHJVMc-fHXVabQ1lZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

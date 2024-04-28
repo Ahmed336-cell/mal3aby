@@ -4,12 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mal3aby/core/common/custom_button.dart';
 import 'package:mal3aby/core/utils/app_router.dart';
+import 'package:mal3aby/core/utils/firebase_fuctions.dart';
+import 'package:mal3aby/features/auth/data/profile.dart';
+import 'package:mal3aby/features/home/data/pitch.dart';
+import 'package:mal3aby/features/home/presentation/view/user/payment_page.dart';
 
 import '../../../../../constants.dart';
 
 class BookingViewBody extends StatefulWidget {
+  const BookingViewBody({super.key, required this.pitch, required this.profile});
+
   @override
   _BookingViewBodyState createState() => _BookingViewBodyState();
+  final Pitch pitch;
+  final Profile profile;
 }
 
 class _BookingViewBodyState extends State<BookingViewBody> {
@@ -102,9 +110,14 @@ class _BookingViewBodyState extends State<BookingViewBody> {
                       btnCancelText: "On Ground",
                       btnCancelColor: Colors.cyan,
                       btnOkText: "Online",
-                      btnCancelOnPress: (){},
+                      btnCancelOnPress: (){
+                      FirebaseFunctions.addReservationToFirestore(profile: widget.profile , pitch: widget.pitch, paymentStatues: "onsite", date: selectedDate , startTime: startTime ! , endTime:  endTime!);
+                      GoRouter.of(context).pushReplacement(AppRouter.KUserHome);
+                      },
                       btnOkOnPress: (){
-                      GoRouter.of(context).push(AppRouter.KPaymentPage);
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return PaymentPage(pitch: widget.pitch, profile: widget.profile, selectDate: selectedDate  , startTime: startTime!  ,endTime: endTime! ,);
+                      }));
                       }
                     ).show();
                     // You can add your booking logic here
