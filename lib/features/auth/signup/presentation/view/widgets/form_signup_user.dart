@@ -10,7 +10,7 @@ import '../../../../manager/auth_cubit/auth_cubit.dart';
 import 'custom_drop_down_list.dart';
 
 
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+final GlobalKey<FormState> _formKeyuser = GlobalKey<FormState>();
 
 class FormInputSignupUser extends StatefulWidget {
   const FormInputSignupUser({super.key});
@@ -32,7 +32,7 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
     _signUp(context);
   }
   void _signUp(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKeyuser.currentState!.validate()) {
       if (confirmPassword == password ) {
         try {
           // Create user in Firebase Authentication
@@ -79,7 +79,7 @@ class _FormInputSignupUserState extends State<FormInputSignupUser> {
                 child:  Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
                   child: Form(
-                    key: _formKey,
+                    key: _formKeyuser,
                     child: Column(
                       children: [
                         const Padding(

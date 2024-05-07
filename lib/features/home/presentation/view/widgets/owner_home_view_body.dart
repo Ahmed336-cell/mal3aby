@@ -3,14 +3,14 @@ import 'package:mal3aby/features/home/presentation/view/owner/reservations_page.
 
 import '../owner/pitches_page.dart';
 class OwnerHomeViewBody extends StatelessWidget {
-  const OwnerHomeViewBody({super.key});
-
+  const OwnerHomeViewBody({super.key, required this.id});
+  final String id;
   @override
   Widget build(BuildContext context) {
-    return const TabBarView(
+    return  TabBarView(
       children: [
-        PitchesViewPage(),
-        ReservationViewPage()
+        const PitchesViewPage(),
+        ReservationViewPage(id: id,)
 
       ],
 

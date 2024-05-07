@@ -61,11 +61,11 @@ class _PaymentPageState extends State<PaymentPage> {
                     child: Column(
                       children: [
                         FormBuilderTextField(
+                          keyboardType: TextInputType.number,
                           name: 'cardNumber',
-                          style: const TextStyle(color: Colors.black ,),
+                          style: const TextStyle(color: Colors.black , backgroundColor: Colors.white),
                           decoration: Constant.paymentDecoration.copyWith(
                               hintText: "Card Number",
-
                           ),
                           onChanged: (value) {
                             setState(() {
@@ -75,8 +75,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                         const SizedBox(height: 12,),
                         FormBuilderTextField(
+                          keyboardType: TextInputType.number,
+
                           name: 'expiryDate',
-                          style: const TextStyle(color: Colors.black ,),
+                          style: const TextStyle(color: Colors.black , backgroundColor: Colors.white),
 
                           decoration: Constant.paymentDecoration.copyWith(hintText: "Expiry Date"
                           ),
@@ -88,8 +90,10 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                         const SizedBox(height: 8,),
                         FormBuilderTextField(
+                          keyboardType: TextInputType.text,
+
                           name: 'cardHolderName',
-                          style: const TextStyle(color: Colors.black ,),
+                          style: const TextStyle(color: Colors.black , backgroundColor: Colors.white),
 
                           decoration:Constant.paymentDecoration.copyWith(
                             hintText: "Card Holder Name"
@@ -104,8 +108,10 @@ class _PaymentPageState extends State<PaymentPage> {
 
                         const SizedBox(height: 8,),
                         FormBuilderTextField(
+                          keyboardType: TextInputType.number,
+
                           name: 'cvvCode',
-                          style: const TextStyle(color: Colors.black ,),
+                          style: const TextStyle(color: Colors.black , backgroundColor: Colors.white),
 
                           decoration:Constant.paymentDecoration.copyWith(
                             hintText: "CVV",

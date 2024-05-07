@@ -4,8 +4,8 @@ import 'package:mal3aby/core/utils/app_router.dart';
 import 'package:mal3aby/features/home/presentation/view/widgets/owner_home_view_body.dart';
 
 class OwnerHomePage extends StatelessWidget {
-  const OwnerHomePage({super.key});
-
+  const OwnerHomePage({super.key, required this.id});
+  final String id;
   @override
   Widget build(BuildContext context) {
     return   SafeArea(
@@ -29,7 +29,7 @@ class OwnerHomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: const OwnerHomeViewBody(),
+        body:  OwnerHomeViewBody(id: id,),
         floatingActionButton: FloatingActionButton(onPressed: () {
           GoRouter.of(context).push(AppRouter.KAddingPitchPage);
         },

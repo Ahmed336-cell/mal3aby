@@ -1,8 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mal3aby/core/utils/app_router.dart';
 import 'package:mal3aby/core/utils/firebase_fuctions.dart';
 
 import '../../../../../constants.dart';
@@ -10,6 +8,7 @@ import '../../../../../core/common/custom_button.dart';
 import '../../../../../core/common/custom_text_feild.dart';
 import '../../../../auth/signup/presentation/view/widgets/custom_drop_down_list.dart';
 import '../../manager/image_picker.dart';
+import '../owner/owner_home_page.dart';
 
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -49,8 +48,9 @@ class _FormAddingNewPitchState extends State<FormAddingNewPitch> {
     if (_formKey.currentState!.validate()) {
       try{
         FirebaseFunctions.addPitchToFirestore(mapLink: link,pitchName: name, govern: dropdownValue, address: address, userId: ownerId, pitchType: type, price: price,images: links, phoneNumber: phone,ownerName: ownerName);
-        GoRouter.of(context).pushReplacement(AppRouter.KOwnerHomePage);
-
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+          return OwnerHomePage(id:ownerId);
+        }));
       }catch(e){
         print(e);
       }

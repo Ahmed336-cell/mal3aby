@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:mal3aby/features/auth/login/presentation/view/login_page.dart';
 import 'package:mal3aby/features/auth/signup/presentation/view/authoriztion_page.dart';
+import 'package:mal3aby/features/auth/signup/presentation/view/forget_password_page.dart';
 import 'package:mal3aby/features/home/presentation/view/owner/adding_new_pitch.dart';
 import 'package:mal3aby/features/auth/signup/presentation/view/owner_singup_page.dart';
 import 'package:mal3aby/features/auth/signup/presentation/view/user_signup_page.dart';
-import 'package:mal3aby/features/home/presentation/view/owner/owner_home_page.dart';
 import 'package:mal3aby/features/home/presentation/view/user/user_home_page.dart';
 import 'package:mal3aby/features/splash/presentation/view/splash_page.dart';
 
@@ -21,7 +21,7 @@ abstract class AppRouter {
   //static const KUserPitchDetailsPage='/userPitchDetails';
   static const KPaymentPage='/paymentPage';
 
-  static const KOwnerHomePage = "/OwnerHomePage";
+  // static const KOwnerHomePage = "/OwnerHomePage";
   // static const KBookingPage = "/bookingPage";
   static const KSplashPage = "/splashPage";
 
@@ -29,6 +29,10 @@ abstract class AppRouter {
     GoRoute(
       path: '/',
       builder: (context, state) =>  SplashScreen(),
+    ),
+    GoRoute(
+      path: KForgerPassword,
+      builder: (context, state) =>  const ForgetPasswordPage(),
     ),
     GoRoute(
       path: KLoginPage,
@@ -46,10 +50,10 @@ abstract class AppRouter {
       path: KSignUpOwner,
       builder: (context, state) => const SignUpOwnerPage(),
     ),
-    GoRoute(
-      path: KOwnerHomePage,
-      builder: (context, state) => const OwnerHomePage(),
-    ),
+    // GoRoute(
+    //   path: KOwnerHomePage,
+    //   builder: (context, state) => const OwnerHomePage(),
+    // ),
     GoRoute(
       path: KAddingPitchPage,
       builder: (context, state) => const AddingNewPitchPage(),

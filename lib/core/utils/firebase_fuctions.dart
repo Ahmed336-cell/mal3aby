@@ -107,7 +107,9 @@ class FirebaseFunctions {
       "startTime":startTime.hour.toString() ,
       "endTime":endTime.hour.toString(),
       "ownerId":pitch.OwnerId!,
-      "paymentStatus":paymentStatues
+      "paymentStatus":paymentStatues,
+      "phoneOwner":pitch.phoneNumber!,
+      "phoneUser":profile.phoneNumber!
     };
   try {
   await FirebaseFirestore.instance.collection('owner').doc(pitch.OwnerId).collection("reservations").doc().set(

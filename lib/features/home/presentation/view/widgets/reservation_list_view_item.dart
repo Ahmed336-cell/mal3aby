@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mal3aby/features/home/data/reservations.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
 
 
 class ReservationListViewItem extends StatelessWidget {
-  const ReservationListViewItem({super.key});
-
+  const ReservationListViewItem({super.key, required this.reservation});
+  final Reservation reservation;
   @override
   Widget build(BuildContext context) {
     return  SKSTicketView(
@@ -33,53 +34,53 @@ class ReservationListViewItem extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * .5,
-                        child: const Text(
-                          "Name: Ahmed Maher",
+                        child:  Text(
+                          "Name: ${reservation.userName}",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 17,color: Colors.black),
+                          style: const TextStyle(fontSize: 17,color: Colors.black),
                         ),
                       ),
                       const SizedBox(
                         height: 3,
                       ),
-                      const Text(
-                        "pitch name : Barcelona Pitch",
+                       Text(
+                        "pitch name : ${reservation.pitchName}",
                         maxLines: 1,
-                        style: TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(
                         height: 3,
                       ),
-                      const Text(
-                        "pitch type : Football",
-                        style: TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
+                       Text(
+                        "pitch type : ${reservation.pitchType}",
+                        style: const TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
 
                       ),
                       const SizedBox(
                         height: 3,
                       ),
-                      const Text(
-                        "Date : 27/3/2024",
-                        style: TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
+                       Text(
+                        "Date : ${reservation.date}",
+                        style: const TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
 
                       ),
                       const SizedBox(
                         height: 3,
                       ),
-                      const Text(
-                        "Time : from 9 pm to 10 pm",
-                        style: TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
+                       Text(
+                        "Time : from ${reservation.startTime}  to ${reservation.endTime} ",
+                        style: const TextStyle(fontSize: 16,color: Colors.black , fontWeight: FontWeight.w500),
 
                       ),
                       const SizedBox(
                         height: 3,
                       ),
-                      const Row(
+                       Row(
                         children: [
-                          Icon(Icons.phone,color: Colors.black,),
-                          SizedBox(width: 6,),
-                          Text("0112222566" , style: TextStyle(fontSize: 18,color: Colors.black),)
+                          const Icon(Icons.phone,color: Colors.black,),
+                          const SizedBox(width: 6,),
+                          Text(reservation.phoneUser , style: const TextStyle(fontSize: 18,color: Colors.black),)
                         ],
 
                       )

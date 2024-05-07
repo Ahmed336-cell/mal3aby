@@ -11,7 +11,7 @@ class UserHomeViewBody extends StatelessWidget {
     return    TabBarView(
       children: [
         PitchesUserPage(profile: profile,),
-        const ReservationViewPage()
+         ReservationViewPage(id: profile.profileId!,)
 
       ],
 

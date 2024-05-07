@@ -7,6 +7,7 @@ import 'package:mal3aby/features/auth/manager/auth_cubit/auth_cubit.dart';
 import 'package:mal3aby/features/home/presentation/manager/user_data_fetch_cubit.dart';
 
 import '../../../../home/presentation/manager/pitchs_list_cubit.dart';
+import '../../../../home/presentation/view/owner/owner_home_page.dart';
 import '../../../manager/auth_cubit/auth_state.dart';
 
 class LoginPage extends StatelessWidget {
@@ -20,7 +21,9 @@ class LoginPage extends StatelessWidget {
         listener:(context,state){
           if(state is  AuthenticationSuccessOwner){
             context.read<DataFetchingPitchsCubit>().fetchListOfPitchesOwnerData(state.user!.uid);
-            GoRouter.of(context).push(AppRouter.KOwnerHomePage);
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return OwnerHomePage(id: state.user!.uid!);
+            }));
           }else if(state is AuthenticationSuccessUser){
             context.read<UserDataFetchCubit>().fetchUserData(state.user!.uid);
             context.read<DataFetchingPitchsCubit>().fetchListOfPitchesUserData();

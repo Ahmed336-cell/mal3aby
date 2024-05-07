@@ -10,7 +10,7 @@ import '../../../../manager/auth_cubit/auth_cubit.dart';
 import '../../../../../../core/utils/firebase_fuctions.dart';
 
 
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+final GlobalKey<FormState> _formKeysignup = GlobalKey<FormState>();
 
 class FormInputSignupOwner extends StatefulWidget {
   const FormInputSignupOwner({super.key});
@@ -30,7 +30,7 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
     _signUp(context);
   }
   void _signUp(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKeysignup.currentState!.validate()) {
       if (confirmPassword == password ) {
         try {
           // Create user in Firebase Authentication
@@ -75,7 +75,7 @@ class _FormInputSignupOwnerState extends State<FormInputSignupOwner> {
                     child:  Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
                       child: Form(
-                        key: _formKey,
+                        key: _formKeysignup,
                         child: Column(
                           children: [
                             const Padding(

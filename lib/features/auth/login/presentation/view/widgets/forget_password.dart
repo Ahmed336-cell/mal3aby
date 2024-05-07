@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mal3aby/core/utils/app_router.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -12,6 +14,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        GoRouter.of(context).push(AppRouter.KForgerPassword);
       },
       child: const Text("Forgot password?",
         style: TextStyle(color: Colors.white , backgroundColor: Colors.black),
