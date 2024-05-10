@@ -80,7 +80,7 @@ class UserPitchDetailsViewBody extends StatelessWidget {
                         }));
                       }),
 
-                      CustomButton(status:"Location" , onPressed: (){})
+                  
 
 
                     ],

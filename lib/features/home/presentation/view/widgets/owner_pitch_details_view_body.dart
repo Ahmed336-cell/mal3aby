@@ -75,17 +75,7 @@ class OwnerPitchDetailsViewBody extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 16,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
 
-                          CustomButton(status:"Edit" , onPressed: (){}),
-
-                          CustomButton(status:"Location" , onPressed: (){})
-
-
-                        ],
-                      )
                     ],
                   ),
                 )
