@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mal3aby/features/home/presentation/view/owner/reservations_page.dart';
+import 'package:mal3aby/features/home/presentation/view/widgets/reservations_list_view_item_owner.dart';
 
 import '../owner/pitches_page.dart';
 class OwnerHomeViewBody extends StatelessWidget {
@@ -10,7 +11,8 @@ class OwnerHomeViewBody extends StatelessWidget {
     return  TabBarView(
       children: [
         const PitchesViewPage(),
-        ReservationViewPage(id: id,)
+
+        ReservationViewPage(id: id)
 
       ],
 

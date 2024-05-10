@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mal3aby/features/home/presentation/view/widgets/reservations_list_view_item_owner.dart';
 
 import '../../../../../constants.dart';
 import '../widgets/reservation_list_view.dart';
@@ -15,7 +16,7 @@ class ReservationViewPage extends StatelessWidget {
 
          Column(
           children: [
-            Expanded(child: ReservationListView(id: id,))
+            Expanded(child: ReservationListViewItemowenr(id: id,))
           ],
         )
       ],

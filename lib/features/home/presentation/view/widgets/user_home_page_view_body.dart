@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mal3aby/features/auth/data/profile.dart';
 import 'package:mal3aby/features/home/presentation/view/user/pitchs_user_page.dart';
+import 'package:mal3aby/features/home/presentation/view/user/reservation_user_page.dart';
 
 import '../owner/reservations_page.dart';
 class UserHomeViewBody extends StatelessWidget {
@@ -11,7 +12,7 @@ class UserHomeViewBody extends StatelessWidget {
     return    TabBarView(
       children: [
         PitchesUserPage(profile: profile,),
-         ReservationViewPage(id: profile.profileId!,)
+         ReservationUserPage(id: profile.profileId!,)
 
       ],
 

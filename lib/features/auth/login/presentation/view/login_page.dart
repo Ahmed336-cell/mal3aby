@@ -22,8 +22,9 @@ class LoginPage extends StatelessWidget {
           if(state is  AuthenticationSuccessOwner){
             context.read<DataFetchingPitchsCubit>().fetchListOfPitchesOwnerData(state.user!.uid);
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return OwnerHomePage(id: state.user!.uid!);
+              return OwnerHomePage(id: state.user!.uid);
             }));
+            print(state.user!.uid);
           }else if(state is AuthenticationSuccessUser){
             context.read<UserDataFetchCubit>().fetchUserData(state.user!.uid);
             context.read<DataFetchingPitchsCubit>().fetchListOfPitchesUserData();
