@@ -48,7 +48,7 @@ class _FormAddingNewPitchState extends State<FormAddingNewPitch> {
     if (_formKey.currentState!.validate()) {
       try{
         FirebaseFunctions.addPitchToFirestore(mapLink: link,pitchName: name, govern: dropdownValue, address: address, userId: ownerId, pitchType: type, price: price,images: links, phoneNumber: phone,ownerName: ownerName);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
           return OwnerHomePage(id:ownerId);
         }));
       }catch(e){

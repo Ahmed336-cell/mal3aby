@@ -5,9 +5,20 @@ import 'package:mal3aby/features/home/presentation/view/widgets/pitch_list_view_
 
 import '../../../data/pitch.dart';
 
-class PitchListView extends StatelessWidget {
+class PitchListView extends StatefulWidget {
   const PitchListView({super.key});
 
+  @override
+  State<PitchListView> createState() => _PitchListViewState();
+}
+
+class _PitchListViewState extends State<PitchListView> {
+@override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder <DataFetchingPitchsCubit,List<Pitch>>(
@@ -29,11 +40,17 @@ class PitchListView extends StatelessWidget {
                 }),
           );
         }else{
-          return const Center(child: Text("No Pitches to appear " , style: TextStyle(
-            fontSize: 25,
-            color: Colors.white,
-            fontWeight: FontWeight.bold
-          ),),);
+          return RefreshIndicator(
+            onRefresh: ()async{
+              context.read<DataFetchingPitchsCubit>().fetchListOfPitchesOwnerData(pitch[0].OwnerId!);
+
+            },
+            child: const Center(child: Text("No Pitches to appear " , style: TextStyle(
+              fontSize: 25,
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            ),),),
+          );
         }
 
 

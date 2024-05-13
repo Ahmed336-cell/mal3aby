@@ -5,6 +5,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:mal3aby/core/utils/firebase_fuctions.dart';
 import 'package:mal3aby/features/auth/data/profile.dart';
 import 'package:mal3aby/features/home/data/pitch.dart';
+import 'package:mal3aby/features/home/presentation/view/owner/owner_home_page.dart';
+import 'package:mal3aby/features/home/presentation/view/user/user_home_page.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/common/custom_button.dart';
@@ -143,6 +145,9 @@ class _PaymentPageState extends State<PaymentPage> {
                               desc: "Are you sure want to confirm payment",
                               btnOkOnPress: (){
                               FirebaseFunctions.addReservationToFirestore(profile: widget.profile , pitch: widget.pitch, paymentStatues: "online", date: widget.selectDate, startTime: widget.startTime, endTime: widget.endTime);
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return const UserHomePage();
+                              }));
                               },
                               btnCancelOnPress: (){},
                             ).show();
